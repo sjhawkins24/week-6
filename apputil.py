@@ -23,6 +23,18 @@ class Genius:
         artist_id = json_data["response"]["hits"][1]["result"]["id"]
         return(artist_id)
     
+    def get_artist_id(self, artist):
+        """Function to get the artist name from the main response"""
+        #Get the token
+        token = self.get_access_token()
+        #Construct the url
+        artist_url = f"http://api.genius.com/search?q={artist}&access_token={token}"
+        #Parse json
+        response = requests.get(artist_url)
+        json_data = response.json()
+        artist_names = json_data["response"]["hits"][1]["result"]["artist_names"]
+        return(artist_names)
+    
     def get_artist_details(self, artist_id):
         """Function to take an artist id and return the details from genius"""
     #Get the token and page length
