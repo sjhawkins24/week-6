@@ -14,7 +14,7 @@ class Genius:
     def get_artist_id(self, artist):
         """Function to get the artist ID from the main response"""
         #Get the token
-        token = self.get_access_token(access_token="access_token")
+        token = self.get_access_token()
         #Construct the url
         artist_url = f"http://api.genius.com/search?q={artist}&access_token={token}"
         #Parse json
@@ -27,7 +27,7 @@ class Genius:
         """Function to take an artist id and return the details from genius"""
     #Get the token and page length
         per_page = 1
-        token = self.get_access_token(access_token="access_token")
+        token = self.get_access_token()
 
     #Construct the url
         songs_url = f"http://api.genius.com/artists/{artist_id}&per_page={per_page}"
@@ -41,25 +41,8 @@ class Genius:
     
     def get_artist(self, search_term): 
         #Get the artist ID
-        artist_id = get_artist_id(self, search_term)
+        artist_id = self.get_artist_id(search_term)
         #Use the ID to get the results
-        results = get_artist_details(artist_id)
+        results = self.get_artist_details(artist_id)
         return(results)
     
-#Adding helper functions 
-
-def get_artist_details(artist_id):
-    """Function to take an artist id and return the details from genius"""
-    #Get the token and page length
-    per_page = 1
-    token = Genius.get_access_token(access_token="access_token")
-
-    #Construct the url
-    songs_url = f"http://api.genius.com/artists/{artist_id}&per_page={per_page}"
-
-    #Parse json
-    response = requests.get(songs_url, 
-                        headers={"Authorization": "Bearer " + token})
-    json_data = response.json()
-    results = json_data["response"]["artist"]
-    return(results)
