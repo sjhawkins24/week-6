@@ -21,7 +21,7 @@ class Genius:
         #Parse json
         response = requests.get(artist_url)
         json_data = response.json()
-        artist_id = json_data["response"]["hits"][1]["result"]["id"]
+        artist_id = json_data["response"]["hits"][0]["result"]["id"]
         return(artist_id)
     
     def get_artist_name(self, artist):
@@ -62,7 +62,7 @@ class Genius:
     def get_artist_data(self, search_term):
         artist_id = self.get_artist_id(search_term)
         artist_name = self.get_artist_name(search_term)
-        follower_count = self.get_artist(search_term)["followers_count"]
+        follower_count = self.get_artist(search_term)["response"]["artist"]["followers_count"]
         artist_result = [search_term, artist_name, artist_id, follower_count ]
         return(artist_result)
     
