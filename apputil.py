@@ -67,7 +67,7 @@ class Genius:
         return(artist_result)
     
     def get_artists(self, search_terms):
-        return_data = pd.DataFrame(columns=["search_term", "artist_name", "artist_id", "follower_count"])
+        return_data = pd.DataFrame(columns=["search_term", "artist_name", "artist_id", "followers_count"])
         for search_term in search_terms: 
             temp_data = self.get_artist_data(search_term)
             return_data.loc[len(return_data)] = temp_data
