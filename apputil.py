@@ -49,7 +49,7 @@ class Genius:
         response = requests.get(songs_url, 
                             headers={"Authorization": "Bearer " + token})
         json_data = response.json()
-        results = json_data["response"]#["artist"]
+        results = json_data#["response"]["artist"]
         return(results)
     
     def get_artist(self, search_term): 
