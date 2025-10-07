@@ -33,7 +33,7 @@ class Genius:
         #Parse json
         response = requests.get(artist_url)
         json_data = response.json()
-        artist_names = json_data["response"]["hits"][0]["result"]["artist_names"]
+        artist_names = json_data["response"]["hits"][0]["result"]["primary_artist_names"]
         return(artist_names)
     
     def get_artist_details(self, artist_id):
